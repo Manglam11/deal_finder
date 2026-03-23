@@ -1,0 +1,32 @@
+name: Deal Finder Automation
+
+on:
+  schedule:
+    - cron: '0 3 * * *'   # Runs daily at 3 AM UTC (~8:30 AM IST)
+  workflow_dispatch:       # Allows manual run
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Run script
+        run: python deal_finder.py
+
+      - name: Run script
+        run: python deal_finder.py
+        env:
+          MY_MAIL: ${{ secrets.MY_MAIL }}
+          APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
+          SMTP_ADDRESS: ${{ secrets.SMTP_ADDRESS }}
