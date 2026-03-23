@@ -19,13 +19,13 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install requests beautifulsoup4
+        run: pip install requests beautifulsoup4 python_dotenv
 
       - name: Run script
-        run: python deal_finder.py
+        run: python main.py
 
       - name: Run script
-        run: python deal_finder.py
+        run: python main.py
         env:
           MY_MAIL: ${{ secrets.MY_MAIL }}
           APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
